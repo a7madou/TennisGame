@@ -10,7 +10,7 @@ class ScoreServiceTest {
     @Test
     void testNextScore_PlayerOneWins() {
         Score score = new Score(TennisScoreEnum.FORTY, TennisScoreEnum.THIRTY);
-        Score newScore = ScoreService.nextScore(score, 'A');
+        Score newScore = ScoreService.nextScore.apply(score, 'A');
         assertEquals(TennisScoreEnum.WIN, newScore.getScorePlayer1());
         assertEquals(TennisScoreEnum.LOOSE, newScore.getScorePlayer2());
     }
@@ -18,7 +18,7 @@ class ScoreServiceTest {
     @Test
     void testNextScore_PlayerTwoWins() {
         Score score = new Score(TennisScoreEnum.THIRTY, TennisScoreEnum.FORTY);
-        Score newScore = ScoreService.nextScore(score, 'B');
+        Score newScore = ScoreService.nextScore.apply(score, 'B');
         assertEquals(TennisScoreEnum.LOOSE, newScore.getScorePlayer1());
         assertEquals(TennisScoreEnum.WIN, newScore.getScorePlayer2());
     }
@@ -26,7 +26,7 @@ class ScoreServiceTest {
     @Test
     void testNextScore_Deuce() {
         Score score = new Score(TennisScoreEnum.FORTY, TennisScoreEnum.FORTY);
-        Score newScore = ScoreService.nextScore(score, 'A');
+        Score newScore = ScoreService.nextScore.apply(score, 'A');
         assertEquals(TennisScoreEnum.ADVANTAGE, newScore.getScorePlayer1());
         assertEquals(TennisScoreEnum.FORTY, newScore.getScorePlayer2());
     }
@@ -34,7 +34,7 @@ class ScoreServiceTest {
     @Test
     void testNextScore_AdvantagePlayerOne() {
         Score score = new Score(TennisScoreEnum.ADVANTAGE, TennisScoreEnum.FORTY);
-        Score newScore = ScoreService.nextScore(score, 'A');
+        Score newScore = ScoreService.nextScore.apply(score, 'A');
         assertEquals(TennisScoreEnum.WIN, newScore.getScorePlayer1());
         assertEquals(TennisScoreEnum.LOOSE, newScore.getScorePlayer2());
     }
@@ -42,7 +42,7 @@ class ScoreServiceTest {
     @Test
     void testNextScore_AdvantagePlayerTwo() {
         Score score = new Score(TennisScoreEnum.FORTY, TennisScoreEnum.ADVANTAGE);
-        Score newScore = ScoreService.nextScore(score, 'B');
+        Score newScore = ScoreService.nextScore.apply(score, 'B');
         assertEquals(TennisScoreEnum.LOOSE, newScore.getScorePlayer1());
         assertEquals(TennisScoreEnum.WIN, newScore.getScorePlayer2());
     }
